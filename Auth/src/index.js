@@ -7,7 +7,7 @@ const {v4} = require("uuid");
 const {hashPassword} = require("./utils");
 const jwt = require("jsonwebtoken");
 const { check_authenticated_user } = require("./config/middleware")
-
+const crypt = require("bcrypt");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -56,6 +56,11 @@ app.post("/login", async (req, res)=> {
         })
     }
     const user = snapshot.docs.at(0).data();
+    if (!crypt.compareSync(password, user.password)) {
+        return res.status(400).json({
+            message: "Invalid credentials"
+        })
+    }
     const token = jwt.sign({id: user.id}, process.env.AUTH_SECRET);
     res.status(200).json({
         message: "Logged in successfully",
@@ -63,8 +68,19 @@ app.post("/login", async (req, res)=> {
     })
 })
 
-app.get("/verify-token", check_authenticated_user, (req, res)=> {
-    
+app.get("/verify-token", (req, res)=> {
+    const token = req.query["token"];
+    check_authenticated_user(token, ()=>{
+        return res.status(401).json({
+            message: "Invalid token"
+        })
+    }, (user)=> {
+        user.password = undefined;
+        return res.status(200).json({
+            message: "Token validated",
+            user: user
+        })
+    })
 })
 
 
