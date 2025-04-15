@@ -15,7 +15,6 @@ function check_authenticated_user(token, err, next) {
         const usersRef = db.collection("users");
         const snapshot = await usersRef.where("id", "==", payload.id).get();
         let user = snapshot.docs[0].data();
-        console.log(snapshot.docs[0]);
         user["created_at"] = snapshot.docs[0]["createTime"].toDate().toDateString();
         next(user);
     });

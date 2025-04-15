@@ -64,6 +64,7 @@ app.post("/login", async (req, res)=> {
     const token = jwt.sign({id: user.id}, process.env.AUTH_SECRET);
     res.status(200).json({
         message: "Logged in successfully",
+        id: user.id,
         access_token: token
     })
 })
@@ -85,6 +86,6 @@ app.get("/verify-token", (req, res)=> {
 
 
 app.listen(process.env.AUTH_PORT, ()=> {
-    console.log(`Auth host is running on ${process.env.AUTH_PORT}`);
+    console.log(`Auth microservice is running on ${process.env.AUTH_PORT}`);
 })
 
