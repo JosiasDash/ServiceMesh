@@ -1,4 +1,4 @@
-# ServiceMesh Microservice
+# Notes Microservice
 
 This microservice is part of the ServiceMesh project and is designed to facilitate communication and management of services within a distributed system. It allows authenticated user with auth service to add notes and view notes.
 
