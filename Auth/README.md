@@ -79,3 +79,31 @@ This API endpoint is used to sign up by submitting user email and password.
     
 
 A successful POST request typically returns a `200 OK` or `201 Created` response code.
+
+### Login Endpoint
+
+This endpoint allows users to log in by providing their email and password.
+
+#### Request Body
+
+- **email** (string): The email of the user.
+    
+- **password** (string): The password of the user.
+    
+
+#### Response
+
+- **message** (string): A message indicating the result of the login attempt.
+    
+- **access_token** (string): A token for accessing protected resources.
+    
+
+Example:
+
+``` json
+{
+    "message": "",
+    "access_token": ""
+}
+
+ ```

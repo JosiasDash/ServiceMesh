@@ -11,21 +11,21 @@ This project is built using Node.js and provides a microservice architecture for
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/ServiceMesh.git
+    git clone git@github.com:JosiasDash/ServiceMesh.git
     ```
 2. Navigate to the project directory:
-    ```bash
-    cd ServiceMesh
-    ```
+```bash
+    cd ServiceMesh/a_service
+```
 3. Install dependencies:
-    ```bash
+```bash
     npm install
-    ```
+```
 
 ### Running the Application
 Start the application with:
 ```bash
-npm start
+node src/index.js
 ```
 
 ### Features
